@@ -3,5 +3,63 @@
 {% load static %}
 
 {% block content %}
-   
+<div class="container-fluid px-0 mx-0">
+      
+    <div class="full-screen-img-box">
+
+        <picture>
+            <source media="(max-width: 768px)"
+                    srcset="{% static 'images/homepage-image-mobile-1.png' %}">
+
+            <source media="(max-width: 1199px)"
+                    srcset="{% static 'images/homepage-image-tablet-1.png' %}">
+
+            <img src="{% static 'images/homepage-image-1.png' %}"
+                alt="First Section Image">
+        </picture>
+
+    </div>
+
+    <div class="full-screen-img-box position-relative">
+
+        <picture>
+            <source media="(max-width: 768px)"
+                    srcset="{% static 'images/homepage-image-mobile-2.png' %}">
+
+            <source media="(max-width: 1199px)"
+                    srcset="{% static 'images/homepage-image-tablet-2.png' %}">
+
+            <img src="{% static 'images/homepage-image-2.png' %}"
+                alt="Second Section Image">
+        </picture>   
+    
+        <div class="image-overlay-layer">
+            
+            <div class="hero-left-title">
+                <h1>BE WELCOME<br>TO COME <span class="tablet-break"><br></span>ALONG</h1>
+            </div>
+
+            <div class="hero-boxes">
+                
+                <div class="info-box green-box">
+                    <h2 class="box-header">
+                        <span>OUR MENU</span>
+                    </h2>
+                    <p class="box-text">artisan pastries baked every morning, and delicious treats made right here in our kitchen.</p>
+                    <a href="#" class="box-link">VIEW MENU &rarr;</a>
+                </div>
+
+                <div class="info-box blue-box">
+                    <h2 class="box-header">
+                        <span>TAKE CRUMB HOME</span>
+                    </h2>
+                    <p class="box-text">We carefully roast our own beans <br> in-house and pack them fresh for you.</p>
+                    <p class="box-text">Buy any coffee bag online and get a <br> QR code in your email for a free cup of coffee at our shop!</p>
+                    <a href="#" class="box-link">VISIT SHOP &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
