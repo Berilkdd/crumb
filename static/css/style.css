@@ -3,6 +3,26 @@
     --secondary-color: #661E0F;
 }
 
+.page-background {
+    background-color: var(--primary-color);
+}
+
+.divider-horizontal {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--secondary-color);
+}
+
+.divider-vertical {
+    width: 1%;
+    height: 100px;
+    width: 3px;
+    background-color: var(--secondary-color);
+}
+
 /* ==========================================================================
     NAVBAR SETTINGS
    ========================================================================== */
@@ -30,22 +50,6 @@
 
 .navbar-logo img:hover {
     filter: drop-shadow(0px 5px 8px rgba(102, 30, 15, 0.5));
-}
-
-.divider-horizontal {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--secondary-color);
-}
-
-.divider-vertical {
-    width: 1%;
-    height: 100px;
-    width: 3px;
-    background-color: var(--secondary-color);
 }
 
 .section-small-header {
@@ -233,6 +237,23 @@ html, body {
 .details-list a {
     color: inherit;
     text-decoration: none;
+}
+
+/* ==========================================================================
+   MENU PAGE
+   ========================================================================== */
+
+.menu-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.menu-image {
+    height: calc(100vh - 70px);
+    width: auto;
+    max-width: 100%;
 }
 
 /* ==========================================================================

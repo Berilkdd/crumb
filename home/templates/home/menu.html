@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="page-background">
+    <div class="menu-container">
+        <picture>
+            <source
+                media="(max-width: 448px) and (orientation: portrait)"
+                srcset="{% static 'images/menu-mobile.png' %}">
+            <img
+                src="{% static 'images/menu.png' %}"
+                alt="Crumb menu"
+                class="menu-image">
+        </picture>
+    </div>
+</div>
+
+{% endblock %}
