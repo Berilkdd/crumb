@@ -8,14 +8,17 @@
     <div class="full-screen-img-box">
 
         <picture>
-            <source media="(max-width: 768px)"
+            <source media="(max-width: 448px) and (orientation: portrait)"
                     srcset="{% static 'images/homepage-image-mobile-1.png' %}">
 
-            <source media="(max-width: 1199px)"
+            <source media="(min-width: 449px) and (orientation: portrait)"
                     srcset="{% static 'images/homepage-image-tablet-1.png' %}">
+            
+            <source media="(max-width: 1390px) and (orientation: landscape)"
+            srcset="{% static 'images/homepage-image-small-landscape-1.png' %}">
 
             <img src="{% static 'images/homepage-image-1.png' %}"
-                alt="First Section Image">
+                alt="coffee facade with customer illustrations">
         </picture>
 
     </div>
@@ -23,14 +26,14 @@
     <div class="full-screen-img-box position-relative">
 
         <picture>
-            <source media="(max-width: 768px)"
+            <source media="(max-width: 448px) and (orientation: portrait)"
                     srcset="{% static 'images/homepage-image-mobile-2.png' %}">
 
-            <source media="(max-width: 1199px)"
+            <source media="(min-width: 449px) and (orientation: portrait)"
                     srcset="{% static 'images/homepage-image-tablet-2.png' %}">
 
             <img src="{% static 'images/homepage-image-2.png' %}"
-                alt="Second Section Image">
+                alt="coffee interior photo with baristas behind the bar and customers">
         </picture>   
     
         <div class="image-overlay-layer">
@@ -62,4 +65,93 @@
     </div>
 </div>
 
+
+<!-- CONTACT SECTION -->
+
+<section class="contact-section">
+    <div class="contact-container">
+
+        <!-- Map Section -->
+        <div class="contact-block map-block">
+            <div id="google-map" class="mock-map"></div>
+        </div>
+
+        <!-- Cotact-us Section -->
+        <div class="contact-block">
+            <h2 class="contact-header mt-2 ms-3 me-3">CONTACT US</h2>
+            <p class="contact-description mt-5 ms-3 me-3">
+                We'd love to hear from you. Whether you have a question about our coffee, pastries or anything else, our team is here to help.
+            </p>
+            <div class="divider-horizontal"></div> 
+        </div>
+
+        <!-- Image Section -->
+        <div class="contact-block image-box">
+            <img src="{% static 'images/contact-image.png' %}" alt="walking man illustration">
+            <div class="divider-horizontal"></div> 
+        </div>
+
+        <!-- Contact-details Section -->
+        <div class="contact-block details-block">
+            <div class="details-list mt-5 ms-3 me-3">
+
+                <div class="contact-description">
+                    <a href="https://maps.google.com/?q=84 St Stephen's Rd, London E3 5JL" target="_blank">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>84 St Stephen's Rd, London E3 5JL</span>
+                    </a>
+                </div>
+
+                <div class="contact-description">
+                    <a href="mailto:hello@crumb.com">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>hello@crumb.com</span>
+                    </a>
+                </div>
+
+                <div class="contact-description">
+                    <a href="tel:+4477712345678">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>0777 123456678</span>
+                    </a>
+                </div>
+
+                <div class="contact-description">
+                    <a href="https://www.instagram.com" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span>@crumb.coffee</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Opening Hours Section -->
+        <div class="contact-block mt-5">
+            <h3 class="section-small-header" style="margin-left: 1rem;">OPENING HOURS</h3>
+            <div class="hours-list">
+                <div class="hours-row">
+                    <span class="contact-description">Monday-Friday</span>
+                    <span class="contact-description">6.30 - 18.00</span>
+                </div>
+                <div class="hours-row">
+                    <span class="contact-description">Saturday</span>
+                    <span class="contact-description">8.00 - 17.00</span>
+                </div>
+                <div class="hours-row">
+                    <span class="contact-description">Sunday</span>
+                    <span class="contact-description">8.00 - 16.00</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDikEfCCz1OJ7InYjtM-0tgHwr38ObCPL8&libraries=maps,marker" defer></script>
+<script src="{% static 'js/map-style.js' %}"></script>
 {% endblock %}
