@@ -152,6 +152,9 @@
 
 {% block scripts %}
 <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDikEfCCz1OJ7InYjtM-0tgHwr38ObCPL8&libraries=maps,marker" defer></script>
+    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=maps,marker"
+    defer>
+</script>
+
 <script src="{% static 'js/map-style.js' %}"></script>
 {% endblock %}
