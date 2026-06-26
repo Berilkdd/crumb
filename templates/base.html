@@ -41,8 +41,9 @@
                 <div class="collapse navbar-collapse" id="navbarMenu">
                     <ul class="navbar-nav ms-auto align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link px-3" href="{% url 'menu' %}">MENU</a>
+                            <a class="nav-link px-3" href="{% url 'menu' %}">MENU</a>                            
                         </li>
+                        
                         <li class="nav-item">                           
                             <a class="nav-link px-3" href="#">CONTACT-US</a>
                         </li>
@@ -64,10 +65,10 @@
                             <a class="nav-link px-3" href="{% url 'products' %}">SHOP</a>
                         </li>                        
                         <li class="nav-item">
-                            <a class="nav-link ps-3 position-relative cart-icon" href="#">
+                            <a class="nav-link ps-3 position-relative cart-icon" href="{% url 'view_cart' %}">
                                 <i class="fa-solid fa-cart-shopping fs-5"></i>
                                 {% if product_count %}
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem;">
+                                    <span class="cart-badge">
                                         {{ product_count }}
                                     </span>
                                 {% endif %}

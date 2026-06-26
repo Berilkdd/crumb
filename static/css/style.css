@@ -63,6 +63,25 @@
     margin: 0 0 6cqw 0;
 }
 
+.cart-icon{
+    position: relative;
+}
+
+.cart-badge{
+    position: absolute;
+    top: -0.5rem;
+    right: -0.4rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;    
+}
+
 /* ==========================================================================
     HOMEPAGE HERO
    ========================================================================== */

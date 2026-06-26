@@ -33,7 +33,7 @@
                         {{ product.description}}
                     </p>                    
                     
-                    <a href="#" class="primary-button mt-4">
+                    <a href="{% url 'add_to_cart' product.id %}" class="primary-button mt-4">
                         <i class="fa-solid fa-cart-shopping"></i>
                         ADD TO CART
                     </a>
