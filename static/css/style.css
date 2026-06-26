@@ -1,10 +1,14 @@
 :root {
     --primary-color: #E7DBCA;
     --secondary-color: #661E0F;
+    --button-width: 27cqw;
+    --button-height: 8cqw;
+    --button-radius: 1cqw;
 }
 
 .page-background {
     background-color: var(--primary-color);
+    min-height: calc(100vh - 71px);
 }
 
 .divider-horizontal {
@@ -255,6 +259,111 @@ html, body {
     width: auto;
     max-width: 100%;
 }
+/* ==========================================================================
+   PRODUCTS PAGE
+   ========================================================================== */
+.product-info{
+    flex:55;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items:center;
+}
+
+.product-description{
+    width:70%;
+    margin:0 auto;
+    text-align:center;
+}
+
+.product-image {
+    width: 100%;
+    max-height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image img {
+    max-width: 70%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.product-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 4cqw;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 0;
+}
+
+.product-price {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-weight: 500;
+    font-size: 3cqw;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 0;
+}
+
+.product-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 3cqw;
+    color: var(--secondary-color);    
+    text-align: center;
+    margin: 0;
+}
+
+.product-description {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 3cqw;
+    color: var(--secondary-color);
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+}
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.primary-button{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    gap:2cqw;
+    width:var(--button-width);     
+    height:var(--button-height);   
+    background-color:var(--secondary-color);
+    color:var(--primary-color);
+    border-radius:var(--button-radius);
+    font-family:'Poppins', sans-serif;
+    font-size:2.5cqw;
+    font-weight:700;
+    text-decoration:none;
+    text-transform:uppercase;
+    transition:.2s;
+    box-sizing:border-box;
+}
+
+.primary-button i{
+    font-size:2.5cqw;;
+}
+
+.primary-button:hover{
+    background-color:#4f170c;   
+    color:var(--primary-color);
+}
+
+.primary-button:active{
+    transform:scale(.97);
+}
+
 
 /* ==========================================================================
     MEDIA QUERIES
@@ -298,7 +407,19 @@ html, body {
         height: auto;
         flex-grow: 1;
     }
+
+    .products-container{
+        margin-top:71px;
+        height:calc(100vh - 71px);
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
     }
+
+    .product-card{
+        container-type:inline-size;
+        overflow:hidden;
+    }
+}
 
 /* Portrait Tablets */
 
@@ -320,11 +441,12 @@ html, body {
     .tablet-break {
         display: inline;
     }
+
     .contact-container {
-    display: grid;
-    grid-template-columns: 2fr 1.5fr 1.5fr;
-    grid-template-rows: 1fr 1fr;
-    align-items: stretch;
+        display: grid;
+        grid-template-columns: 2fr 1.5fr 1.5fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: stretch;
     }
 
     .image-box {
@@ -348,7 +470,20 @@ html, body {
         flex-grow: 1;
     }
 
+    .products-container {
+        padding-top: 30px;
+        margin-top: 71px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        aspect-ratio: 3 / 2;
     }
+
+    .product-card {
+        container-type: inline-size;
+        overflow: hidden;
+    }
+}
 
 /* Portrait Mobile */
 @media (max-width: 448px) and (orientation: portrait){
@@ -390,5 +525,27 @@ html, body {
     .contact-container .contact-block:not(.map-block):not(.details-block):last-of-type {
         order: 4;
     }
+
+    .products-container{
+        margin-top: 71px;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;          /* Kartlar arası boşluk */
+    }
+
+    .product-card{
+        width: 100%;
+        padding-bottom: 5vh;
+    }
 }
 
+/* Landscape Mobile */
+@media (orientation: landscape) and (max-height: 450px) {
+
+    .products-container{
+        height: auto;
+        min-height: calc(100vh - 71px);
+        padding-bottom: 5vh;
+    }
+
+}

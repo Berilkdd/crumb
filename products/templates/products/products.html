@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="page-background">
+    <div class="products-container">
+
+        {% for product in products %}
+
+            <div class="product-card">
+
+                <div class="product-image">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </div>
+
+                <div class="product-info">
+
+                    <p class="product-title mb-3">
+                        {{ product.name|upper }}
+                    </p>
+
+                    <p class="product-subtitle mb-3">
+                        {{ product.subtitle }}
+                    </p>
+
+                    <p class="product-price mb-3">
+                        £{{ product.price }}
+                    </p>
+
+                    <p class="product-description mb-3">
+                        {{ product.description}}
+                    </p>                    
+                    
+                    <a href="#" class="primary-button mt-4">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        ADD TO CART
+                    </a>
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
