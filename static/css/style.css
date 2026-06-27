@@ -383,6 +383,147 @@ html, body {
     transform:scale(.97);
 }
 
+/* ==========================================================================
+   CART PAGE
+   ========================================================================== */
+
+.cart-content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cart-list{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    container-type: inline-size;
+}
+
+.cart-item{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center; 
+    position: relative;  
+} 
+
+.cart-item::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.cart-item-image img{
+    max-height: 130px;
+    width: auto;
+}
+
+.cart-header{
+    display:flex;
+    align-items:center;
+    gap:1.8cqw;
+    margin-bottom:1.8cqw;
+    margin-top:1.8cqw;
+    margin-left:5.3cqw;
+}
+
+.cart-header h1{
+    font-size:1.8cqw;
+    margin:0;
+    color:var(--secondary-color);
+}
+
+.cart-header i{
+    font-size:1.8cqw;
+    color:var(--secondary-color);
+}
+
+.cart-item-name{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.cart-item-name p{
+    margin:0;
+    font-size:1.8cqw;
+    font-weight:600;
+    color:var(--secondary-color);
+}
+
+.cart-item-name span{
+    margin-top:0.35cqw;
+    font-size:1.8cqw;
+    color:var(--secondary-color);
+}
+
+.cart-item-quantity{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.quantity-selector{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:7.7cqw;
+    height:2.7cqw;
+    border:1px solid var(--secondary-color);
+    border-radius:0.2cqw;
+}
+
+.quantity-selector a{
+    width:3.1cqw;
+    text-align:center;
+    text-decoration:none;
+    color:var(--secondary-color);
+    font-size:1.8cqw;
+    font-weight:600;
+}
+
+.cart-item-quantity button{
+    border:none;
+    background:none;
+    width:3.1cqw;
+    cursor:pointer;
+    color:var(--secondary-color);
+    font-weight:600;
+}
+
+.cart-item-quantity span{
+    flex:1;
+    text-align:center;
+    color:var(--secondary-color);
+    font-size:1.8cqw;
+    font-weight:600;
+}
+
+.cart-item-price{
+    text-align:center;
+    font-size:1.8cqw;
+    font-weight:600;
+    color:var(--secondary-color);
+}
+
+.cart-item-remove{
+    text-align:center;
+    font-size:1.4cqw;
+}
+
+.cart-item-remove a{
+    color:var(--secondary-color);
+    text-decoration:none;
+    font-size:1.7cqw;
+}
+
+.cart-item-remove a:hover{
+    text-decoration:underline;
+}
+
 
 /* ==========================================================================
     MEDIA QUERIES
@@ -438,6 +579,13 @@ html, body {
         container-type:inline-size;
         overflow:hidden;
     }
+
+    .cart-container{
+        margin-top:71px;
+        height:calc(100vh - 71px);
+        display:grid;
+        grid-template-columns:2fr 1fr;
+    }    
 }
 
 /* Portrait Tablets */

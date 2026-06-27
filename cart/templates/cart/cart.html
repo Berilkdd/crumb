@@ -1,5 +1,61 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
-<h1>Checkout</h1>
+
+<div class="page-background">
+
+    <div class="cart-container">
+
+        <div class="cart-content">
+
+            <div class="cart-header">
+                <h1>YOUR CART</h1>
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+
+            <div class="cart-list">
+
+                {% for item in cart_items %}
+
+                <div class="cart-item">
+
+                    <div class="cart-item-image">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    </div>
+
+                    <div class="cart-item-name">
+                        <p>{{ item.product.name|upper }}</p>
+                        <span>250 g</span>
+                    </div>
+
+                    <div class="cart-item-quantity">
+                        <div class="quantity-selector">
+                            <a href="{% url 'decrease_quantity' item.product.id %}"> - </a>
+                            <span>{{ item.quantity }}</span>
+                            <a href="{% url 'increase_quantity' item.product.id %}"> + </a>
+                        </div>
+                    </div>
+
+                    <div class="cart-item-price">
+                        £{{ item.product.price }}
+                    </div>
+
+                    <div class="cart-item-remove">
+                        <a href="{% url 'remove_from_cart' item.product.id %}">Remove</a>
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}
