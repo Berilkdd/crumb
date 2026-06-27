@@ -6,14 +6,14 @@
 
 <div class="page-background">
 
-    <div class="cart-container">
+    <div class="page-header">
+        <h1>YOUR CART</h1>
+        <i class="fa-solid fa-cart-shopping"></i>
+    </div>
 
-        <div class="cart-content">
+    <div class="cart-container">        
 
-            <div class="cart-header">
-                <h1>YOUR CART</h1>
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
+        <div class="cart-content">            
 
             <div class="cart-list">
 
@@ -52,6 +52,92 @@
 
             </div>
 
+            <div class="reward-section">
+
+                <h1 class="campaign-header mb-3">CONGRATULATIONS!</h1>
+
+                <p class="campaign-text mb-2">
+                    <strong>
+                        You've earned {{ reward_count }} free coffee{% if reward_count != 1 %}s{% endif %}!
+                    </strong>
+                </p>
+
+                <p class="campaign-text mb-2">
+                    Complete your order to receive your free coffee QR code by email.<br>
+                    One free coffee for every bag purchased.<br>
+                    Maximum reward: 5 free coffees.
+                </p>                
+
+                <div class="reward-cups">
+                    {% for i in reward_range %}
+                        <img src="{% static 'images/coffee-reward.png' %}" alt="Free coffee reward">
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="summary-costs">
+
+            <h1 class="campaign-header">ORDER SUMMARY</h1>            
+
+            <div class="summary-row mt-4">                    
+                <span>Subtotal</span>
+                <span>£{{ subtotal|floatformat:2 }}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>                
+
+                {% if shipping == 0 %}
+                    <span>FREE</span>
+                {% else %}
+                    <span>£{{ shipping|floatformat:2 }}</span>
+                {% endif %}
+            </div>
+
+            {% if not eligible_for_free_delivery %}
+
+            <div class="delivery-container mt-4">
+
+                <div class="delivery-header">
+
+                    <i class="fa-regular fa-truck"></i>
+
+                    <div class="delivery-title">
+                        <h1 class="campaign-header">GET FREE DELIVERY</h1>
+                        <p class="campaign-text">Spend £35 or more to get free delivery.</p>
+                    </div>
+
+                </div>
+
+                <p class = "campaign-text mt-3">
+                    You are <strong>£{{ amount_remaining|floatformat:2 }}</strong> away from free delivery.
+                </p>
+
+                <a href="{% url 'products' %}" class="button button-outline button-fixed mb-4">
+                    CONTINUE SHOPPING
+                </a>
+
+            </div>
+
+                {% endif %}
+
+                <div class="divider-horizontal"></div>
+
+                <div class="summary-row summary-total mt-4 mb-4">                    
+                    <span><strong>TOTAL</strong></span>
+                    <span><strong>£{{ total|floatformat:2 }}</strong></span>
+                </div>
+                
+                <a href="#" class="button button-primary button-full">
+                        <i class="fa-solid fa-lock"></i>
+                        PROCEED TO CHECKOUT
+                </a>
+
+            </div>    
+
+            
         </div>
 
     </div>

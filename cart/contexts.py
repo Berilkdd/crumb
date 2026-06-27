@@ -5,7 +5,7 @@ def cart_contents(request):
     product_count = sum(cart.values())
 
     context = {
-        "product_count": product_count,
+        "product_count": product_count,        
     }
 
     return context
