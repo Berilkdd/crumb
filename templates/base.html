@@ -35,7 +35,7 @@
                 </a>              
                 
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-                    <i class="fa-solid fa-bars" style="color: var(--secondary-color);"></i> 
+                    <i class="fa-solid fa-bars navbar-toggler-icon-custom"></i> 
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarMenu">
@@ -45,7 +45,7 @@
                         </li>
                         
                         <li class="nav-item">                           
-                            <a class="nav-link px-3" href="#">CONTACT-US</a>
+                            <a class="nav-link px-3" href="{% url 'home' %}#contact">CONTACT-US</a>
                         </li>
 
                         {% if request.user.is_authenticated %}
@@ -66,6 +66,7 @@
                         </li>                        
                         <li class="nav-item">
                             <a class="nav-link ps-3 position-relative cart-icon" href="{% url 'view_cart' %}">
+                                <span class="cart-label">CART </span>
                                 <i class="fa-solid fa-cart-shopping fs-5"></i>
                                 {% if product_count %}
                                     <span class="cart-badge">
@@ -85,5 +86,29 @@
     </main>
     {% block scripts %}
     {% endblock %}
+
+    <!-- Adapted from a ChatGPT-generated code for Bootstrap collapse events. -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const collapse = document.getElementById("navbarMenu");
+            const icon = document.querySelector(".navbar-toggler i");
+
+            collapse.addEventListener("show.bs.collapse", function () {
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+            });
+
+            collapse.addEventListener("hide.bs.collapse", function () {
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            });
+
+        });
+    </script>
+
 </body>
+</html>
 

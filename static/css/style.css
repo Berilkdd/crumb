@@ -94,6 +94,28 @@
     font-size: 0.7rem;    
 }
 
+.navbar-toggler-icon-custom{
+    color: var(--secondary-color);
+}
+
+.navbar-toggler{
+    padding: 0;
+}
+
+.navbar-toggler:focus{
+    box-shadow: none;
+}
+
+.navbar-toggler-icon-custom{
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+}
+
+.cart-label{
+    display: none;
+}
+
+
 /* ==========================================================================
     HOMEPAGE HERO
    ========================================================================== */
@@ -233,6 +255,9 @@ html, body {
     margin: 0 0 6cqw 0;
 }
 
+.contact-section{
+    scroll-margin-top: 71px;
+}
 /* Map */
 
 .map-block {
@@ -884,6 +909,10 @@ html, body {
     .quantity-selector span{
         font-size: 0.8rem;
     }
+
+    .container-fluid{
+        padding-inline: 0 !important;
+    }
 }
 
 /* Landscape Mobile */
@@ -929,4 +958,21 @@ html, body {
         color: var(--secondary-color);
     } 
 
+    .container-fluid{
+        padding-inline: 0 !important;
+    }
+}
+
+@media (max-width: 769px) {
+    .navbar-collapse{
+        border-top:1px solid var(--secondary-color);
+        margin-top:1rem;
+    }
+
+    .cart-label{
+        display: inline;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+    }
 }
