@@ -24,48 +24,7 @@ def add_to_cart(request, item_id):
 
 def view_cart(request):
 
-    cart = request.session.get("cart", {})
-
-    cart_items = []
-    total_quantity = 0
-    subtotal = 0
-
-    for item_id, quantity in cart.items():
-
-        product = get_object_or_404(Product, pk=item_id)
-
-        cart_items.append({
-            "product": product,
-            "quantity": quantity,            
-        })
-
-        total_quantity += quantity
-        subtotal += product.price * quantity
-
-    reward_count = min(total_quantity, 5)
-
-    if subtotal >= 35:
-        shipping = Decimal("0.00")
-    else:
-        shipping = Decimal("3.50")
-
-    eligible_for_free_delivery = shipping == 0
-    amount_remaining = max(35 - subtotal, 0)
-    
-    total = subtotal + shipping
-
-    context = {
-        "cart_items": cart_items,
-        "reward_count": reward_count,
-        "reward_range": range(reward_count),
-        "subtotal": subtotal,
-        "shipping": shipping,
-        "total": total,
-        "eligible_for_free_delivery": eligible_for_free_delivery,
-        "amount_remaining": 35 - subtotal,
-    }
-
-    return render(request, "cart/cart.html", context)
+    return render(request, "cart/cart.html")
 
 def remove_from_cart(request, item_id):
 

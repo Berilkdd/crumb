@@ -11,9 +11,9 @@
         <i class="fa-solid fa-cart-shopping"></i>
     </div>
 
-    <div class="cart-container">        
+    <div class="page-container">        
 
-        <div class="cart-content">            
+        <div class="page-content">            
 
             <div class="cart-list">
 
@@ -99,49 +99,44 @@
             {% if not eligible_for_free_delivery %}
 
             <div class="delivery-container mt-4">
+                <div class="delivery-content">
+                    <div class="delivery-header">
 
-                <div class="delivery-header">
-
-                    <i class="fa-regular fa-truck"></i>
-
-                    <div class="delivery-title">
-                        <h1 class="campaign-header">GET FREE DELIVERY</h1>
-                        <p class="campaign-text">Spend £35 or more to get free delivery.</p>
-                    </div>
-
+                        <i class="fa-regular fa-truck"></i>
+                        <div class="delivery-title">
+                            <h1 class="campaign-header">GET FREE DELIVERY</h1>
+                            <p class="campaign-text">Spend £35 or more to get free delivery.</p>                        
+                        </div>      
+                                                                        
+                    </div>               
+                    
+                    <p class = "campaign-text mt-3">
+                        You are <strong>£{{ amount_remaining|floatformat:2 }}</strong> away from free delivery.
+                    </p>
                 </div>
-
-                <p class = "campaign-text mt-3">
-                    You are <strong>£{{ amount_remaining|floatformat:2 }}</strong> away from free delivery.
-                </p>
 
                 <a href="{% url 'products' %}" class="button button-outline button-fixed mb-4">
                     CONTINUE SHOPPING
-                </a>
+                </a>               
 
             </div>
 
-                {% endif %}
+            {% endif %}
 
-                <div class="divider-horizontal"></div>
+            <div class="divider-horizontal"></div>
 
-                <div class="summary-row summary-total mt-4 mb-4">                    
-                    <span><strong>TOTAL</strong></span>
-                    <span><strong>£{{ total|floatformat:2 }}</strong></span>
-                </div>
-                
-                <a href="#" class="button button-primary button-full">
-                        <i class="fa-solid fa-lock"></i>
-                        PROCEED TO CHECKOUT
-                </a>
-
-            </div>    
-
+            <div class="summary-row summary-total mt-4 mb-4">                    
+                <span><strong>TOTAL</strong></span>
+                <span><strong>£{{ total|floatformat:2 }}</strong></span>
+            </div>
             
-        </div>
+            <a href="#" class="button button-primary button-full">
+                    <i class="fa-solid fa-lock"></i>
+                    PROCEED TO CHECKOUT
+            </a>
 
+        </div>   
     </div>
-
 </div>
 
 {% endblock %}

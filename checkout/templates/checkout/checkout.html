@@ -1,5 +1,195 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
-<h1>Checkout</h1>
+
+<div class="page-background">
+
+    <div class="page-header">
+        <h1>CHECKOUT</h1>
+        <i class="fa-solid fa-lock"></i>
+    </div>
+
+    <div class="page-container">
+
+        <div class="page-content">
+            
+            <form method="POST" id="payment-form">
+
+            {% csrf_token %}
+
+                <div class="shipping-info"> 
+                    
+                    <h1 class="campaign-header">
+                        SHIPPING ADDRESS
+                    </h1>                
+
+                    {{ order_form.full_name }}
+
+                    {{ order_form.address_line1 }}
+
+                    {{ order_form.address_line2 }}
+
+                    <div class="address-row">
+                        {{ order_form.town_or_city }}
+                        {{ order_form.postcode }}
+                    </div>
+
+                    {{ order_form.phone_number }}                     
+
+                </div>                
+
+                <label class="save-info-label">
+
+                    <input
+                        type="checkbox"
+                        name="save_info"
+                        id="id-save-info">
+                    
+                    <span class="checkbox"></span>
+                    <span>Save delivery information for next time</span>
+
+                </label>                
+
+                <div class="payment-info">
+                    <h1 class="campaign-header">
+                        PAYMENT INFORMATION
+                    </h1>
+
+                    <div id="card-element"></div>
+
+                    <div id="card-errors"
+                        class="text-danger mt-2"
+                        role="alert">
+                    </div>
+                </div>                
+
+                <label class="save-info-label">
+
+                    <input
+                        type="checkbox"
+                        name="save_payment_info"
+                        id="id-save-payment-info">
+
+                    <span class="checkbox"></span>
+                    <span>Save payment information for next time</span>
+
+                </label>               
+
+            </form> 
+
+            <div class="checkout-buttons">
+
+                <a href="{% url 'view_cart' %}"
+                class="button button-outline">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    ADJUST CART
+                </a>
+
+                <button type="submit"
+                        class="button button-primary">
+                    <i class="fa-solid fa-lock"></i>
+                    COMPLETE ORDER
+                </button>
+
+            </div> 
+        </div>       
+       
+        <div class="summary-costs">
+
+            <h1 class="campaign-header">ORDER SUMMARY</h1> 
+            
+            <div class="summary-list">
+
+                {% for item in cart_items %}
+
+                <div class="summary-item">
+
+                    <div class="summary-item-image">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    </div>
+
+                    <div class="summary-item-name">
+                        <p>{{ item.product.name|upper }}</p>
+                        <span>250 g</span>
+                    </div>    
+                    
+                    <div class="summary-item-quantity">
+                        Qty: {{ item.quantity }}
+                    </div>
+
+                    <div class="summary-item-price">
+                        £{{ item.line_total }}
+                    </div>                    
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="summary-row mt-4">                    
+                <span>Subtotal</span>
+                <span>£{{ subtotal|floatformat:2 }}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>                
+
+                {% if shipping == 0 %}
+                    <span>FREE</span>
+                {% else %}
+                    <span>£{{ shipping|floatformat:2 }}</span>
+                {% endif %}
+            </div>
+
+            <div class="divider-horizontal"></div>
+
+            <div class="summary-row summary-total mt-4 mb-4">                    
+                <span><strong>TOTAL</strong></span>
+                <span><strong>£{{ total|floatformat:2 }}</strong></span>
+            </div>
+
+            {% if not eligible_for_free_delivery %}
+
+            <div class="delivery-container mt-4">
+
+                <div class="delivery-header">
+
+                    <i class="fa-regular fa-truck"></i>
+
+                    <div class="delivery-title">
+                        <h1 class="campaign-header">GET FREE DELIVERY</h1>
+                        <p class="campaign-text">Spend £35 or more to get free delivery.</p>
+                    </div>
+
+                </div>
+
+                <p class = "campaign-text mt-3">
+                    You are <strong>£{{ amount_remaining|floatformat:2 }}</strong> away from free delivery.
+                </p>
+
+                <a href="{% url 'products' %}" class="button button-outline button-fixed mb-4">
+                    CONTINUE SHOPPING
+                </a>
+
+            </div>
+
+            {% endif %}      
+                
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+
 {% endblock %}
