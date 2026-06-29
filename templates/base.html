@@ -50,14 +50,14 @@
 
                         {% if request.user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link px-3" href="#">SIGN-OUT</a>
+                                <a class="nav-link px-3" href="{% url 'account_logout' %}">SIGN-OUT</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link px-3" href="#">SIGN-IN</a>
+                                <a class="nav-link px-3" href="{% url 'account_login' %}">SIGN-IN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link px-3" href="#">REGISTER</a>
+                                <a class="nav-link px-3" href="{% url 'account_signup' %}">REGISTER</a>
                             </li>
                         {% endif %}
 
