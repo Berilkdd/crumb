@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = "/products/"
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
@@ -188,4 +188,4 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = "Crumb <crumbcoffeelondon@gmail.com>"
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 
-
+ACCOUNT_ADAPTER = "crumb.account_adapter.AccountAdapter"

@@ -102,14 +102,14 @@
 
                             <li class="nav-item">
                                 <a class="nav-link px-3"
-                                   href="{% url 'account_login' %}">
+                                   href="{% url 'account_login' %}?next={{ request.path }}">
                                     SIGN-IN
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link px-3"
-                                   href="{% url 'account_signup' %}">
+                                   href="{% url 'signup_redirect' %}?next={{ request.path }}">
                                     REGISTER
                                 </a>
                             </li>
@@ -148,10 +148,17 @@
                                 <li><hr class="dropdown-divider"></li>
 
                                 <li>
-                                    <a class="dropdown-item"
-                                       href="{% url 'account_logout' %}">
-                                        Sign Out
-                                    </a>
+                                    {% if request.resolver_match.url_name == "checkout" %}
+                                        <a class="dropdown-item"
+                                        href="{% url 'custom_logout' %}?next={% url 'view_cart' %}">
+                                            SIGN OUT
+                                        </a>
+                                    {% else %}
+                                        <a class="dropdown-item"
+                                        href="{% url 'custom_logout' %}?next={{ request.path }}">
+                                            SIGN OUT
+                                        </a>
+                                    {% endif %}
                                 </li>
                             </ul>
                         </li>
@@ -161,9 +168,7 @@
                         <li class="nav-item d-none d-lg-block">
 
                             <a class="nav-link cart-item-price position-relative cart-icon"
-                               href="{% url 'view_cart' %}">
-
-                                
+                               href="{% url 'view_cart' %}">                                
 
                                 <i class="fa-solid fa-cart-shopping fs-5"></i>
 
@@ -199,10 +204,17 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link"
-                            href="{% url 'account_logout' %}">
-                                SIGN OUT
-                            </a>
+                            {% if request.resolver_match.url_name == "checkout" %}
+                                <a class="nav-link"
+                                href="{% url 'custom_logout' %}?next={% url 'view_cart' %}">
+                                    SIGN OUT
+                                </a>
+                            {% else %}
+                                <a class="nav-link"
+                                href="{% url 'custom_logout' %}?next={{ request.path }}">
+                                    SIGN OUT
+                                </a>
+                            {% endif %}
                         </li>
 
                     </ul>
