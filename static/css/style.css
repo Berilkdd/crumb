@@ -53,7 +53,11 @@
 .custom-navbar {
     background-color: var(--primary-color);
     border-bottom: 5px solid var(--secondary-color); 
-    padding: 10px 20px;
+    padding: 10px 0;
+}
+
+.custom-navbar .container-fluid {
+    padding-inline: 15px;    
 }
 
 .custom-navbar .nav-link {
@@ -107,8 +111,40 @@
     font-size: 1.8rem;
 }
 
-.cart-label{
-    display: none;
+
+/* ==========================================================================
+   ACCOUNT DROPDOWN
+   ========================================================================== */
+
+.navbar .dropdown-menu{
+    background-color: var(--primary-color) !important;
+    border: 2px solid var(--secondary-color) !important;
+    border-radius: 12px;
+}
+
+.navbar .dropdown-item,
+.navbar .dropdown-item-text{
+    font-family: 'Poppins', sans-serif !important;
+    color: var(--secondary-color) !important;
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus,
+.navbar .dropdown-item:active{
+    background-color: var(--primary-color) !important;
+    color: var(--secondary-color) !important;
+}
+
+.navbar .dropdown-divider{
+    border-color: var(--secondary-color) !important;
+}
+
+.navbar .dropdown-toggle,
+.navbar .dropdown-toggle:focus,
+.navbar .dropdown-toggle:hover,
+.navbar .dropdown-toggle:active,
+.navbar .dropdown-toggle.show{
+    color: var(--secondary-color) !important;
 }
 
 /* ==========================================================================
@@ -1089,16 +1125,7 @@ html, body {
         font-size: 0.8rem;
     }
 
-    .container-fluid{
-        padding-inline: 0 !important;
-    }
-
-    .cart-label{
-        display: inline;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--secondary-color);
-    } 
+    
 }
 
 /* Landscape mobile ans mini tablets*/
@@ -1138,9 +1165,7 @@ html, body {
         margin-inline: 15px;       
     }     
 
-    .container-fluid{
-        padding-inline: 0 !important;
-    }
+    
 
     .delivery-header i{
         display: none;
@@ -1148,13 +1173,7 @@ html, body {
     
     .delivery-title{
         margin-left:0;        
-    }
-    .cart-label{
-        display: inline;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--secondary-color);
-    } 
+    }     
 }
 
 /* ==========================================================================
@@ -1164,21 +1183,59 @@ html, body {
 /* Hamburger navbar */
 
 @media (max-width: 991.98px){
-
-    .container-fluid{
-        padding-inline:0 !important;
-    }
-
+    
     .navbar-collapse{
         border-top:1px solid var(--secondary-color);
         margin-top:1rem;
+    }   
+    
+    .mobile-coming-soon{
+        color:#9E6F60 !important;
     }
 
-    .cart-label{
-        display:inline;
-        font-size:1.1rem;
-        font-weight:600;
-        color:var(--secondary-color);
+    #mobileAccountMenu{
+        width: 100%;
+        border-top: 1px solid var(--secondary-color);
+        margin-top: 1rem;        
+    }
+
+    #mobileAccountMenu .navbar-nav{
+        align-items: center;
+    }
+
+    #mobileAccountMenu .nav-item{
+        width: 100%;
+        text-align: center;
+    }
+
+    #mobileAccountMenu .nav-link{
+        display: block;
+        padding: .8rem 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--secondary-color);
+    }
+
+    #mobileAccountMenu .mobile-coming-soon{
+        color: #9E6F60 !important;
+    }
+
+    #mobileAccountMenu .nav-link{
+        display: block;
+        padding: 8px 16px;
+        font-size: 20px;
+        line-height: 30px;
+    }    
+
+    .mobile-user-greeting{
+        text-transform: none !important;
+    }
+
+    .coming-soon-note{
+        font-size: 0.70em;
+        font-weight: 400;
+        text-transform: none;
     }
 }
 
@@ -1186,18 +1243,13 @@ html, body {
 
 @media (max-width:991.98px) and (orientation:landscape){
 
-    .navbar-collapse{
-            border-top:none;
-            margin-top:0;
-        }
-
     .button{    
         font-size:clamp(.80rem,2cqw,1.5rem); 
         white-space: normal;   
     }
 
     .button i{
-    font-size:clamp(.80rem,2cqw,1.5rem);
-    white-space: normal;
+        font-size:clamp(.80rem,2cqw,1.5rem);
+        white-space: normal;
     }
-    }
+}

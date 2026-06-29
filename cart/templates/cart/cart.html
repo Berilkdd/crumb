@@ -130,11 +130,10 @@
                 <span><strong>£{{ total|floatformat:2 }}</strong></span>
             </div>
             
-            <a href="#" class="button button-primary button-full">
+            <a href="{% url 'checkout_gate' %}" class="button button-primary button-full">
                     <i class="fa-solid fa-lock"></i>
                     PROCEED TO CHECKOUT
             </a>
-
         </div>   
     </div>
 </div>
