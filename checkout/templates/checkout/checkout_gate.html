@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="page-background">
+
+    <div class="page-header">
+        <h1>ALMOST THERE</h1>        
+    </div>
+
+    <div class="page-container">
+        <div class="page-content">
+        
+            <p class="campaign-text mt-4 mb-4">Sign in to complete your order. Don't have an account? Create one to get your free coffee rewards.</p>
+
+            <h1 class="campaign-header mt-4 mb-4">{{ reward_count }} FREE COFFEES</h1>
+
+            <div class="reward-cups mb-3">
+                {% for i in reward_range %}
+                    <img src="{% static 'images/coffee-reward.png' %}" alt="Free coffee reward">
+                {% endfor %}
+            </div>
+
+            <p class="campaign-text mb-2">Earn one free coffee for every bag purchased. Your QR codes will be delivered by email after your order is complete.</p>                
+            
+            <div class="auth-buttons">
+
+                <a href="#" class="button button-primary button-fixed">
+                    SIGN IN
+                </a>
+
+                <p class="campaign-text">
+                    OR<br>
+                    Don't you have an account yet?
+                </p>
+
+                <a href="#" class="button button-outline button-fixed">
+                    CREATE AN ACCOUNT
+                </a>
+
+            </div>
+        </div>       
+       
+        <div class="summary-costs">
+
+            <h1 class="campaign-header">ORDER SUMMARY</h1> 
+            
+            <div class="summary-list">
+
+                {% for item in cart_items %}
+
+                <div class="summary-item">
+
+                    <div class="summary-item-image">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    </div>
+
+                    <div class="summary-item-name">
+                        <p>{{ item.product.name|upper }}</p>
+                        <span>250 g</span>
+                    </div>    
+                    
+                    <div class="summary-item-quantity">
+                        Qty: {{ item.quantity }}
+                    </div>
+
+                    <div class="summary-item-price">
+                        £{{ item.line_total }}
+                    </div>                    
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="summary-row mt-4">                    
+                <span>Subtotal</span>
+                <span>£{{ subtotal|floatformat:2 }}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>                
+
+                {% if shipping == 0 %}
+                    <span>FREE</span>
+                {% else %}
+                    <span>£{{ shipping|floatformat:2 }}</span>
+                {% endif %}
+            </div>
+
+            <div class="divider-horizontal"></div>
+
+            <div class="summary-row summary-total mt-4 mb-4">                    
+                <span><strong>TOTAL</strong></span>
+                <span><strong>£{{ total|floatformat:2 }}</strong></span>
+            </div>           
+                
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

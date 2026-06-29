@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from cart.contexts import cart_contents
 from .forms import OrderForm
@@ -27,6 +27,10 @@ def checkout(request):
 
     return render(request, "checkout/checkout.html", context)
 
-print("PUBLIC:", settings.STRIPE_PUBLIC_KEY)
-print("SECRET:", settings.STRIPE_SECRET_KEY)
+def checkout_gate(request):
+
+    if request.user.is_authenticated:
+        return redirect("checkout")
+
+    return render(request, "checkout/checkout_gate.html")
 

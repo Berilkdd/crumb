@@ -454,10 +454,16 @@ html, body {
     margin:0;
 }
 
-/*Active*/
+.auth-buttons{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:clamp(.8rem,2cqw,1rem);
+    margin-top:clamp(1.5rem,3cqw,2rem);
+}
 
-.button:active{
-    transform:scale(.97);
+.auth-buttons .button{
+    margin:0;
 }
 
 /* ==========================================================================
