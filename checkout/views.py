@@ -2,24 +2,62 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 from cart.contexts import cart_contents
 from products.models import Product
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 import stripe
+from .webhook_handler import StripeWH_Handler
+import json
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+@csrf_exempt
+def cache_checkout_data(request):
+    if request.method == "POST":
+        try:
+            pid = request.POST.get("client_secret").split("_secret")[0]
+
+            stripe.PaymentIntent.modify(
+                pid,
+                metadata={
+                    "cart": json.dumps(request.session.get("cart", {})),
+                    "save_delivery_info": request.POST.get(
+                        "save_delivery_info"
+                    ),
+                    "user": request.user.username,
+                    "full_name": request.POST.get("full_name"),
+                    "address_line1": request.POST.get("address_line1"),
+                    "address_line2": request.POST.get("address_line2"),
+                    "town_or_city": request.POST.get("town_or_city"),
+                    "postcode": request.POST.get("postcode"),
+                    "phone_number": request.POST.get("phone_number"),
+                },
+            )
+
+            return HttpResponse(status=200)
+
+        except Exception as e:
+            messages.error(request, "Sorry, your payment cannot be processed.")
+            return HttpResponse(content=e, status=400)
 
 def checkout(request):
     
     cart = request.session.get("cart", {})
 
-    if request.method == "POST":        
+    if request.method == "POST":
+
+        pid = request.POST.get("client_secret").split("_secret")[0]
+
         order_form = OrderForm(request.POST)
+
         if order_form.is_valid():
 
             order = order_form.save(commit=False)
             order.user = request.user
+            order.stripe_pid = pid
             order.save_delivery_info = (
                 "save_delivery_info" in request.POST
             )
@@ -138,5 +176,33 @@ def checkout_success(request, order_id):
         },
     )
 
-    
+@csrf_exempt
+def webhook(request):
+    """Handle Stripe webhooks."""
+
+    payload = request.body
+    sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload,
+            sig_header,
+            settings.STRIPE_WH_SECRET,
+        )
+    except ValueError:
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError:
+        return HttpResponse(status=400)
+
+    handler = StripeWH_Handler(request)
+
+    event_map = {
+        "payment_intent.succeeded": handler.handle_payment_intent_succeeded,
+        "payment_intent.payment_failed": handler.handle_event,
+    }
+
+    event_type = event["type"]
+    event_handler = event_map.get(event_type, handler.handle_event)
+
+    return event_handler(event)
 

@@ -18,6 +18,10 @@
             <form method="POST" id="payment-form">
 
             {% csrf_token %}
+            <input
+                type="hidden"
+                name="client_secret"
+                value="{{ client_secret }}">
 
                 <div class="shipping-info"> 
                     

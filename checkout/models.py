@@ -31,10 +31,10 @@ class Order(models.Model):
     )
 
     order_total = models.DecimalField(
-    max_digits=10,
-    decimal_places=2,
-    default=0,
-    )
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        )
 
     delivery_cost = models.DecimalField(
         max_digits=10,
@@ -46,6 +46,12 @@ class Order(models.Model):
         max_digits=10,
         decimal_places=2,
         default=0,
+    )
+
+    stripe_pid = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
     )
 
     save_delivery_info = models.BooleanField(default=False)
