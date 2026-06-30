@@ -38,3 +38,6 @@ def checkout_gate(request):
 
     return render(request, "checkout/checkout_gate.html")
 
+def checkout_success(request):
+    return render(request, "checkout/checkout_success.html")
+

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="page-background">
+
+    <div class="page-header">
+        <h1>ORDER CONFIRMED</h1>
+        <i class="fa-solid fa-check"></i>
+    </div>
+
+    <div class="page-container">
+
+        <div class="page-content">
+            <p class="campaign-text mt-5">
+                Thank you for your order!
+            </p>
+
+            <p class="campaign-text">
+                Your payment has been processed successfully.
+            </p>
+
+            <p class="campaign-text">
+                <strong>Order details and your coffee reward QR code have been sent to your email.</strong>
+            </p>
+
+            <p class="campaign-text">
+                You will be redirected to the homepage in a few seconds.
+            </p>    
+        </div>       
+       
+        <div class="summary-costs">
+
+            <h1 class="campaign-header">ORDER SUMMARY</h1> 
+            
+            <div class="summary-list">
+
+                {% for item in cart_items %}
+
+                <div class="summary-item">
+
+                    <div class="summary-item-image">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    </div>
+
+                    <div class="summary-item-name">
+                        <p>{{ item.product.name|upper }}</p>
+                        <span>250 g</span>
+                    </div>    
+                    
+                    <div class="summary-item-quantity">
+                        Qty: {{ item.quantity }}
+                    </div>
+
+                    <div class="summary-item-price">
+                        £{{ item.line_total }}
+                    </div>                    
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="summary-row mt-4">                    
+                <span>Subtotal</span>
+                <span>£{{ subtotal|floatformat:2 }}</span>
+            </div>
+        </div>
+            
+    </div>
+</div>
+
+{% endblock %}
+
