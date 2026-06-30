@@ -57,7 +57,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link position-relative cart-icon"
-                           href="{% url 'view_cart' %}">
+                           href="{% url 'cart_redirect' %}">
                             <i class="fa-solid fa-cart-shopping fs-5"></i>
 
                             {% if product_count %}
@@ -168,7 +168,7 @@
                         <li class="nav-item d-none d-lg-block">
 
                             <a class="nav-link cart-item-price position-relative cart-icon"
-                               href="{% url 'view_cart' %}">                                
+                               href="{% url 'cart_redirect' %}">                                
 
                                 <i class="fa-solid fa-cart-shopping fs-5"></i>
 
@@ -225,6 +225,16 @@
             </div>
         </nav>
     </div>
+
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <div class="message message-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <main class="outer-box">
         {% block content %}

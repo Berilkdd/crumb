@@ -1,5 +1,7 @@
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.contrib import messages
+from django.http import HttpResponse
 
 
 def custom_logout(request):
@@ -22,3 +24,7 @@ def signup_redirect(request):
     request.session["after_signup_redirect"] = next_page
 
     return redirect("account_signup")
+
+def cart_redirect(request):
+    messages.success(request, "cart is empty")
+    return redirect("home")

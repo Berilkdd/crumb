@@ -28,6 +28,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("logout/", views.custom_logout, name="custom_logout"),
     path("signup/", views.signup_redirect, name="signup_redirect"),
+    path("cart-redirect/", views.cart_redirect, name="cart_redirect"),
 ]
 
 if settings.DEBUG:

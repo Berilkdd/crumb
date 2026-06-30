@@ -31,7 +31,7 @@
     font-family:'Poppins',sans-serif;
     font-size:clamp(2rem, 2vw, 2.8rem);
     margin-top: 20px;
-    margin-left: 45px;
+    margin-left: 15px;
 }
 
 .page-header i{
@@ -111,6 +111,50 @@
     font-size: 1.8rem;
 }
 
+/* ==========================================================================
+   MESSAGES
+   ========================================================================== */
+
+.messages-container{
+    position: fixed;
+    top: 5.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+}
+
+.message{
+    animation: fadeOut 2s forwards;
+
+    padding: .75rem 1.25rem;
+    border-radius: .5rem;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+
+    box-shadow: 0 .25rem .75rem rgba(0,0,0,.2);
+}
+
+@keyframes fadeOut{
+    0%,60%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+        visibility:hidden;
+    }
+}
+
+.message-success,
+.message-info{
+    background:var(--secondary-color);
+    color:var(--primary-color);
+}
+
+.message-error{
+    background:var(--secondary-color);
+    color:var(--primary-color);
+}
 
 /* ==========================================================================
    ACCOUNT DROPDOWN
@@ -349,6 +393,13 @@ html, body {
 /* ==========================================================================
    PRODUCTS PAGE
    ========================================================================== */
+
+.products-container{
+    margin-top:20px;        
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+}
+
 .product-info{
     flex:55;
     min-height:0;
@@ -358,31 +409,20 @@ html, body {
     align-items:center;
 }
 
-.product-description{
-    width:70%;
-    margin:0 auto;
-    text-align:center;
-}
-
-.product-image {
-    width: 100%;
-    max-height: 70%;
-    display: flex;
+.product-image {       
+    display: flex; 
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;   
 }
 
-.product-image img {
-    max-width: 70%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    display: block;
+.product-image img {    
+    width: 13vw;    
 }
+
 .product-title {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 4cqw;
+    font-size: 1.5rem;
     color: var(--secondary-color);
     text-align: center;
     margin: 0;
@@ -392,7 +432,7 @@ html, body {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-weight: 500;
-    font-size: 3cqw;
+    font-size: 1rem;
     color: var(--secondary-color);
     text-align: center;
     margin: 0;
@@ -401,21 +441,23 @@ html, body {
 .product-subtitle {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 3cqw;
+    font-size: 1rem;
     color: var(--secondary-color);    
-    text-align: center;
-    margin: 0;
+    text-align: center;    
 }
 
 .product-description {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    font-size: 3cqw;
+    font-size:0.9rem;    
     color: var(--secondary-color);
     text-align: center;
     width: 70%;
-    margin: 0 auto;
+    margin: 0 auto;  
+    min-height: 6rem; 
 }
+
+
 /* ==========================================================================
    BUTTONS
    ========================================================================== */
@@ -430,7 +472,7 @@ html, body {
     height:3rem;
     border-radius:0.7rem;
     font-family:'Poppins', sans-serif;
-    font-size:clamp(.90rem,2cqw,1.5rem);
+    font-size:1rem;
     font-weight:500;
     text-decoration:none;
     transition:.2s ease;
@@ -446,11 +488,15 @@ html, body {
 /* Width modifiers */
 
 .button-fixed{
-    width: min(100%, 20rem);
+    width: 20vw;
 }
 
 .button-full{
     width:100%;
+}
+
+.button-campaign{
+    width: min(100%, 30rem);
 }
 
 /* Style modifiers */
@@ -514,7 +560,7 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100%; 
-    padding-inline:45px;   
+    padding-inline:15px;   
 }
 
 .cart-list{
@@ -853,6 +899,12 @@ html, body {
     font-weight:700;
 }
 
+.address-row{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:clamp(.8rem,1.6cqw,1rem);
+}
+
 
 /* ==========================================================================
     MEDIA QUERIES
@@ -876,7 +928,7 @@ html, body {
         align-items: stretch;
     }
 
-    .image-box {
+    .contact-image-box {
         display: block !important;
         grid-column: 3;
         grid-row: 1;
@@ -886,7 +938,7 @@ html, body {
         padding-top: 2rem;
     }
 
-    .contact-container .image-box img {
+    .contact-container .contact-image-box img {
         display: block !important;
         height: 100% !important;
         object-fit: cover !important;
@@ -895,14 +947,7 @@ html, body {
     .mock-map {
         height: auto;
         flex-grow: 1;
-    }
-
-    .products-container{
-        margin-top:71px;
-        height:calc(100vh - 71px);
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-    }
+    }    
 
     .product-card{
         container-type:inline-size;
@@ -917,13 +962,11 @@ html, body {
     .page-content{
         border-right: 2px solid var(--secondary-color);
         height: 100%
-    }
+    }    
 
-    .address-row{
-        display:grid;
-        grid-template-columns:2fr 1fr;
-        gap:1em;
-}
+    .product-card:nth-child(2){
+        border-inline: 1px solid var(--secondary-color);
+    }
 }
 
 /* Portrait Tablets */
@@ -954,7 +997,7 @@ html, body {
         align-items: stretch;
     }
 
-    .image-box {
+    .contact-image-box {
         display: block !important;
         grid-column: 3;
         grid-row: 1;
@@ -964,7 +1007,7 @@ html, body {
         padding-top: 2rem;
     }
 
-    .contact-container .image-box img {
+    .contact-container .contact-image-box img {
         display: block !important;
         height: 100% !important;
         object-fit: cover !important;
@@ -973,26 +1016,8 @@ html, body {
     .mock-map {
         height: auto;
         flex-grow: 1;
-    }
-
-    .products-container {
-        padding-top: 30px;
-        margin-top: 71px;
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        aspect-ratio: 3 / 2;
-    }
-
-    .product-card {
-        container-type: inline-size;
-        overflow: hidden;
-    }
-
-    .page-content{
-        padding-inline:15px;
-    }
-
+    }  
+     
     .reward-section{        
         border-bottom: 1px solid var(--secondary-color);           
     }
@@ -1010,6 +1035,14 @@ html, body {
 
     .summary-costs {
         margin-top: 20px;        
+    }
+
+    .product-image img {    
+        width: 18vw;    
+    }
+
+    .product-card:nth-child(2){
+        border-inline: 1px solid var(--secondary-color);
     }
 }
 
@@ -1029,7 +1062,7 @@ html, body {
         display: none;
     }
 
-    .image-box {
+    .contact-image-box {
         display: none !important;
     }
 
@@ -1056,15 +1089,16 @@ html, body {
     }
 
     .products-container{
-        margin-top: 71px;
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;         
+        margin-top:20px;        
+        display:grid;
+        grid-template-columns:1fr;
     }
 
     .product-card{
         width: 100%;
         padding-bottom: 5vh;
+        margin-inline: 15px;
+        border-bottom: 1px solid var(--secondary-color); 
     }
 
     .page-header{
@@ -1072,19 +1106,14 @@ html, body {
     }
 
     .page-header h1{
-        font-size: 2rem; 
-        margin-left: 15px;               
+        font-size: 2rem;                        
     }
 
     .page-header i{
         font-size: 1.5rem;
         padding-top: 0.8rem;
-    }
+    }   
     
-    .page-content{
-        padding-inline:15px;
-    }
-
     .reward-section{        
         border-bottom: 1px solid var(--secondary-color);
     }
@@ -1099,10 +1128,6 @@ html, body {
         height:auto;
     }
     
-    .page-content {
-        padding-inline: 15px;
-    }
-
     .cart-item-name p{
     font-size: 0.8rem;
     }    
@@ -1123,38 +1148,33 @@ html, body {
     .quantity-selector a,
     .quantity-selector span{
         font-size: 0.8rem;
+    }    
+
+    .product-image img {    
+        width: 40vw;    
     }
 
-    
+    .button-fixed{
+        width: 50vw;
+    }
 }
 
-/* Landscape mobile ans mini tablets*/
+/* Landscape mobile and mini tablets*/
 
 @media (orientation: landscape) and (max-height: 768px) {
-
-    .products-container{
-        height: auto;
-        min-height: calc(100vh - 71px);
-        padding-bottom: 5vh;
-    }
 
     .page-header{
         gap: 0.8rem;                
     }
 
     .page-header h1{
-        font-size: 2rem; 
-        margin-left: 15px;               
+        font-size: 2rem;                        
     }
 
     .page-header i{
         font-size: 1.5rem;
         padding-top: 0.8rem;
-    }
-
-    .page-content{
-        padding-inline:15px;
-    }
+    }    
 
     .reward-cups img{
         width: 3cqw;
@@ -1163,9 +1183,7 @@ html, body {
 
     .summary-costs {
         margin-inline: 15px;       
-    }     
-
-    
+    }         
 
     .delivery-header i{
         display: none;
