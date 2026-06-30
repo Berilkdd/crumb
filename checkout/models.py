@@ -1,7 +1,16 @@
 from django.db import models
+from django.conf import settings
 
 
 class Order(models.Model):
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="orders",
+        null=True,
+        blank=True,
+    )
 
     full_name = models.CharField(max_length=100)
 
@@ -18,6 +27,8 @@ class Order(models.Model):
         max_length=20,
         blank=True
     )
+
+    save_delivery_info = models.BooleanField(default=False)
 
     date = models.DateTimeField(auto_now_add=True)
 

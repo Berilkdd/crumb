@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib import messages
 from cart.contexts import cart_contents
 from .forms import OrderForm
@@ -20,9 +20,33 @@ def checkout(request):
     # Redirect unauthenticated users to the checkout gate.
     if not request.user.is_authenticated:
         return redirect("checkout_gate")
+    
+    # If user is authenticated and cart is not empty
+    # Pre-fill the form if there is a saved address 
 
-    # User is authenticated and the cart contains items.
-    order_form = OrderForm()
+    initial = {}
+
+    saved_order = (
+        Order.objects
+        .filter(
+            user=request.user,
+            save_delivery_info=True,
+        )
+        .order_by("-date")
+        .first()
+    )
+
+    if saved_order:
+        initial = {
+            "full_name": saved_order.full_name,
+            "address_line1": saved_order.address_line1,
+            "address_line2": saved_order.address_line2,
+            "town_or_city": saved_order.town_or_city,
+            "postcode": saved_order.postcode,
+            "phone_number": saved_order.phone_number,
+    }
+
+    order_form = OrderForm(initial=initial)
 
     cart_data = cart_contents(request)
 
@@ -41,6 +65,7 @@ def checkout(request):
 
     return render(request, "checkout/checkout.html", context)
 
+
 def checkout_gate(request):
 
     cart = request.session.get("cart", {})
@@ -58,8 +83,7 @@ def checkout_gate(request):
 
     return render(request, "checkout/checkout_gate.html")
 
+
 def checkout_success(request):
     return render(request, "checkout/checkout_success.html")
-
-
 
