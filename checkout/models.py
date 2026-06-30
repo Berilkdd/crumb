@@ -30,6 +30,24 @@ class Order(models.Model):
         blank=True,
     )
 
+    order_total = models.DecimalField(
+    max_digits=10,
+    decimal_places=2,
+    default=0,
+    )
+
+    delivery_cost = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+    )
+
+    grand_total = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+    )
+
     save_delivery_info = models.BooleanField(default=False)
 
     date = models.DateTimeField(auto_now_add=True)
@@ -62,6 +80,17 @@ class OrderLineItem(models.Model):
         max_digits=10,
         decimal_places=2,
         editable=False,
+    )
+
+    product_name = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    product_image = models.ImageField(
+        upload_to="order_images/",
+        blank=True,
+        null=True,
     )
 
     def save(self, *args, **kwargs):

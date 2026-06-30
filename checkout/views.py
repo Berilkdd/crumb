@@ -23,6 +23,11 @@ def checkout(request):
             order.save_delivery_info = (
                 "save_delivery_info" in request.POST
             )
+            cart_data = cart_contents(request)
+
+            order.order_total = cart_data["subtotal"]
+            order.delivery_cost = cart_data["shipping"]
+            order.grand_total = cart_data["total"]
             order.save()
             
             for item_id, quantity in cart.items():
@@ -30,11 +35,13 @@ def checkout(request):
                 product = Product.objects.get(pk=item_id)
 
                 OrderLineItem.objects.create(
-                    order=order,
-                    product=product,
-                    quantity=quantity,
-                    product_price=product.price,
-                )
+                order=order,
+                product=product,
+                product_name=product.name,
+                product_image=product.image,
+                quantity=quantity,
+                product_price=product.price,
+            )
 
             return redirect("checkout_success", order.id)
 

@@ -37,16 +37,16 @@
             
             <div class="summary-list">
 
-                {% for item in cart_items %}
+                {% for item in order.lineitems.all %}
 
                 <div class="summary-item">
 
                     <div class="summary-item-image">
-                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                        <img src="{{ item.product_image.url }}" alt="{{ item.product_name }}">
                     </div>
 
                     <div class="summary-item-name">
-                        <p>{{ item.product.name|upper }}</p>
+                        <p>{{ item.product_name|upper }}</p>
                         <span>250 g</span>
                     </div>    
                     
@@ -55,21 +55,36 @@
                     </div>
 
                     <div class="summary-item-price">
-                        £{{ item.line_total }}
+                        £{{ item.lineitem_total|floatformat:2 }}
                     </div>                    
 
                 </div>
 
                 {% endfor %}
 
-            </div>
+                <div class="summary-row mt-4">                    
+                    <span>Subtotal</span>
+                    <span>£{{ order.order_total|floatformat:2 }}</span>
+                </div>
 
-            <div class="summary-row mt-4">                    
-                <span>Subtotal</span>
-                <span>£{{ subtotal|floatformat:2 }}</span>
-            </div>
-        </div>
-            
+                <div class="summary-row">
+                    <span>Shipping</span>                
+
+                    {% if order.delivery_cost == 0 %}
+                        <span>FREE</span>
+                    {% else %}
+                        <span>{{ order.delivery_cost|floatformat:2 }}</span>
+                    {% endif %}
+                </div> 
+
+                <div class="divider-horizontal"></div>
+
+                <div class="summary-row summary-total mt-4 mb-4">                    
+                    <span><strong>TOTAL</strong></span>
+                    <span><strong>£{{ order.grand_total|floatformat:2 }}</strong></span>
+                </div>
+            </div>            
+        </div>            
     </div>
 </div>
 
