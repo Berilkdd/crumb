@@ -1,16 +1,47 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib import messages
 from cart.contexts import cart_contents
+from products.models import Product
 from .forms import OrderForm
+from .models import Order, OrderLineItem
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def checkout(request):
-
+    
     cart = request.session.get("cart", {})
+
+    if request.method == "POST":        
+        order_form = OrderForm(request.POST)
+        if order_form.is_valid():
+
+            order = order_form.save(commit=False)
+            order.user = request.user
+            order.save_delivery_info = (
+                "save_delivery_info" in request.POST
+            )
+            order.save()
+            
+            for item_id, quantity in cart.items():
+
+                product = Product.objects.get(pk=item_id)
+
+                OrderLineItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=quantity,
+                    product_price=product.price,
+                )
+
+            return redirect("checkout_success")
+
+        else:
+            messages.error(
+                request,
+                "Please check your form."
+            )        
 
     # Prevent direct URL access to checkout when the cart is empty.
     if not cart:
@@ -45,6 +76,7 @@ def checkout(request):
             "postcode": saved_order.postcode,
             "phone_number": saved_order.phone_number,
     }
+        
 
     order_form = OrderForm(initial=initial)
 

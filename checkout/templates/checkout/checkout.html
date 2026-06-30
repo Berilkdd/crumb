@@ -44,8 +44,8 @@
 
                     <input
                         type="checkbox"
-                        name="save_info"
-                        id="id-save-info">
+                        name="save_delivery_info"
+                        id="id_save_delivery_info">
                     
                     <span class="checkbox"></span>
                     <span>Save delivery information for next time</span>
@@ -75,11 +75,8 @@
                     <span class="checkbox"></span>
                     <span>Save payment information for next time</span>
 
-                </label>               
-
-            </form> 
-
-            <div class="checkout-buttons">
+                </label>
+                <div class="checkout-buttons">
 
                 <a href="{% url 'view_cart' %}"
                 class="button button-outline">
@@ -93,7 +90,10 @@
                     COMPLETE ORDER
                 </button>
 
-            </div> 
+            </div>                
+
+            </form> 
+                        
         </div>       
        
         <div class="summary-costs">
