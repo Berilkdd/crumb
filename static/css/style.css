@@ -379,14 +379,14 @@ html, body {
    ========================================================================== */
 
 .menu-container {
-    min-height: 100vh;
+    min-height: calc(100vh-71px);
     display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 
 .menu-image {
-    height: calc(100vh - 70px);
+    height: calc(100vh - 71px);
     width: auto;
     max-width: 100%;
 }

@@ -27,7 +27,7 @@ def cache_checkout_data(request):
                     "save_delivery_info": request.POST.get(
                         "save_delivery_info"
                     ),
-                    "user": request.user.username,
+                    "user_id": request.user.id,
                     "full_name": request.POST.get("full_name"),
                     "address_line1": request.POST.get("address_line1"),
                     "address_line2": request.POST.get("address_line2"),
