@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from cart.contexts import cart_contents
 from products.models import Product
 from .forms import OrderForm
@@ -35,7 +36,7 @@ def checkout(request):
                     product_price=product.price,
                 )
 
-            return redirect("checkout_success")
+            return redirect("checkout_success", order.id)
 
         else:
             messages.error(
@@ -115,7 +116,20 @@ def checkout_gate(request):
 
     return render(request, "checkout/checkout_gate.html")
 
+def checkout_success(request, order_id):
 
-def checkout_success(request):
-    return render(request, "checkout/checkout_success.html")
+    order = get_object_or_404(Order, pk=order_id)
+
+    if "cart" in request.session:
+        del request.session["cart"]
+
+    return render(
+        request,
+        "checkout/checkout_success.html",
+        {
+            "order": order,
+        },
+    )
+
+    
 
