@@ -26,5 +26,10 @@ def signup_redirect(request):
     return redirect("account_signup")
 
 def cart_redirect(request):
-    messages.success(request, "cart is empty")
-    return redirect("home")
+    cart = request.session.get("cart", {})
+
+    if not cart:
+        messages.info(request, "Cart is empty.")
+        return redirect(request.META.get("HTTP_REFERER", "/"))
+
+    return redirect("view_cart")

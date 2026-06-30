@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from products.models import Product
 from decimal import Decimal
+
 
 
 def add_to_cart(request, item_id):
@@ -36,6 +38,10 @@ def remove_from_cart(request, item_id):
         del cart[item_id]
 
     request.session["cart"] = cart
+
+    if not cart:
+        messages.info(request, "Cart is empty.")
+        return redirect("products")
 
     return redirect("view_cart")
 
