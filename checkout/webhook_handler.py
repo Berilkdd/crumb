@@ -40,7 +40,15 @@ class StripeWH_Handler:
                 status=200,
             )
 
-        except Order.DoesNotExist:         
+        except Order.DoesNotExist:      
+            if not getattr(intent.metadata, "cart", None):
+                return HttpResponse(
+                    content=(
+                        f"Webhook received: {event['type']} | "
+                        "No checkout metadata found."
+                    ),
+                    status=200,
+                )   
            
             cart = json.loads(intent.metadata.cart)
             user_id = int(intent.metadata.user_id)
