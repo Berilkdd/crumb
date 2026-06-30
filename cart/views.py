@@ -25,6 +25,12 @@ def add_to_cart(request, item_id):
     return redirect("products")
 
 def view_cart(request):
+    cart = request.session.get("cart", {})
+
+    # Prevent direct URL access to the cart page when the cart is empty.
+    if not cart:
+        messages.info(request, "Cart is empty.")
+        return redirect("products")   
 
     return render(request, "cart/cart.html")
 
@@ -39,6 +45,7 @@ def remove_from_cart(request, item_id):
 
     request.session["cart"] = cart
 
+    # Redirect the user to the products page if the all items are removed and the cart becomes empty.
     if not cart:
         messages.info(request, "Cart is empty.")
         return redirect("products")

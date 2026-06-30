@@ -25,6 +25,8 @@ def signup_redirect(request):
 
     return redirect("account_signup")
 
+
+# Prevent access to the cart page from the navigation bar
 def cart_redirect(request):
     cart = request.session.get("cart", {})
 

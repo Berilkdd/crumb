@@ -2,3 +2,6 @@
 env.py
 __pycache__/
 *.pyc
+
+# Temporary documentation
+README_DRAFT.md
