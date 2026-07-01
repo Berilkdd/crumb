@@ -12,7 +12,11 @@
             <div class="product-card">
 
                 <div class="product-image">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <img src="{% static 'images/default-product.jpg' %}" alt="{{ product.name }}">
+                    {% endif %}
                 </div>
 
                 <div class="product-info">
