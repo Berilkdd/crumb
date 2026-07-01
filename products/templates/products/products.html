@@ -25,7 +25,22 @@
                         {{ product.name|upper }}
                     </p>
 
-                   
+                    <p class="product-subtitle mb-3">
+                        {{ product.subtitle }}
+                    </p>
+
+                    <p class="product-price">
+                        £{{ product.price }}
+                    </p>
+
+                    <p class="product-description">
+                        {{ product.description}}
+                    </p>                    
+                    
+                    <a href="{% url 'add_to_cart' product.id %}" class="button button-primary button-fixed">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        ADD TO CART
+                    </a>
                 </div>
 
             </div>
