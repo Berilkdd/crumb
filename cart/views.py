@@ -1,28 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from products.models import Product
+from django.http import HttpResponse
 from decimal import Decimal
+
 
 
 
 def add_to_cart(request, item_id):
 
-    product = get_object_or_404(Product, pk=item_id)
-
-    cart = request.session.get("cart", {})
-
-    item_id = str(item_id)
-
-    if item_id in cart:
-        cart[item_id] += 1
-    else:
-        cart[item_id] = 1
-
-    request.session["cart"] = cart
-
-    print(request.session["cart"])
-
-    return redirect("products")
+    return HttpResponse("ADD TO CART HIT")
 
 def view_cart(request):
     cart = request.session.get("cart", {})
