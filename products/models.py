@@ -7,6 +7,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image = models.ImageField(upload_to='products/')
+    image_url = models.URLField(max_length=1024, blank=True, null=True)
     origin = models.CharField(max_length=100, blank=True)
     roast = models.CharField(max_length=50, blank=True)
     process = models.CharField(max_length=50, blank=True)
