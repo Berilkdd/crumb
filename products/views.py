@@ -1,14 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .models import Product
 
 
 def all_products(request):
-    """A view to display all products."""
-
-    products = Product.objects.all()
-
-    context = {
-        'products': products,
-    }
-
-    return render(request, 'products/products.html', context)
+    return HttpResponse("Products OK")
