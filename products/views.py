@@ -4,5 +4,4 @@ from .models import Product
 
 
 def all_products(request):
-    product = Product.objects.first()
-    return HttpResponse(product.name)
+    return HttpResponse(str(Product.objects.count()))
