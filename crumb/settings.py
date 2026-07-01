@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.messages",
-    'cloudinary_storage',
+    "django.contrib.messages",    
     "django.contrib.staticfiles",
     "django.contrib.sites",
 
@@ -51,9 +50,7 @@ INSTALLED_APPS = [
 
     "allauth",
     "allauth.account",
-    "allauth.socialaccount",
-
-    'cloudinary',    
+    "allauth.socialaccount",      
 ]
 
 SITE_ID = 1
