@@ -4,4 +4,12 @@ from .models import Product
 
 
 def all_products(request):
-    return HttpResponse(str(Product.objects.count()))
+    products = Product.objects.all()
+
+    return render(
+        request,
+        "products/products.html",
+        {
+            "products": products,
+        },
+    )
