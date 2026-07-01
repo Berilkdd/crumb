@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 import dj_database_url
+#import cloudinary
+#import cloudinary.uploader
+#import cloudinary.api
 
 if os.path.isfile("env.py"):
     import env
@@ -50,7 +53,10 @@ INSTALLED_APPS = [
 
     "allauth",
     "allauth.account",
-    "allauth.socialaccount",      
+    "allauth.socialaccount",   
+
+    'cloudinary_storage',
+    'cloudinary'   
 ]
 
 SITE_ID = 1
@@ -143,8 +149,6 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = '/media/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
@@ -172,4 +176,19 @@ DEFAULT_FROM_EMAIL = "Crumb <crumbcoffeelondon@gmail.com>"
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 
 ACCOUNT_ADAPTER = "crumb.account_adapter.AccountAdapter"
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
