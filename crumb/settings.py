@@ -184,8 +184,8 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 ACCOUNT_ADAPTER = "crumb.account_adapter.AccountAdapter"
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', ''),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', ''),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', ''),
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME',),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY',),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET',),
     'SECURE': True
 }
