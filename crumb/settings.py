@@ -140,23 +140,6 @@ STORAGES = {
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-cloud_name = os.environ.get("CLOUDINARY_CLOUD_NAME")
-api_key = os.environ.get("CLOUDINARY_API_KEY")
-api_secret = os.environ.get("CLOUDINARY_API_SECRET")
-
-if cloud_name and api_key and api_secret:
-    import cloudinary
-    import cloudinary.uploader
-    import cloudinary.api
-
-    cloudinary.config(
-        cloud_name=cloud_name,
-        api_key=api_key,
-        api_secret=api_secret,
-        secure=True
-    )
-
-
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET")
